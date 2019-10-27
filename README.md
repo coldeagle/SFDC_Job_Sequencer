@@ -6,12 +6,12 @@ This tools ability to create sequence jobs that run on a schedule. This provides
 
 And you're saying to your self "Ok that sounds great but why is this important." Well think about it this way. You've got 10 things that need to run on x basis. Traditionally, you would need to either create a class that would run a bunch of code synchronously and run the risk of hitting governor limits.  Another approach could be create separate classes and schedule them to run; however, you could run into limits there as there are a finite number of classes that can be scheduled (100 total). Additionally, if you've got two jobs running at the same time, you could run into row locks. If the jobs are batch apex, you have a limit there as well.
 
-Another problem with these approaches is that it's difficult for you to create those jobs without writing code unless you try to use time-based workflows. There are some limits there too. 
+Another problem with these approaches is that it's difficult for you to create those jobs without writing code unless you try to use time-based workflow's. There are some limits there too. 
 
 # How does the tool work
-So now you know why the tool could be helpful, now let's see how it works. Once installed, this tool has a metadata type "Sequence Job" that can be configured with the frequency that the it should be run at (hourly, daily, etc). Each sequence job is run asyncronously in either a batch or queueable context. 
+So now you know why the tool could be helpful, now let's see how it works. Once installed, this tool has a metadata type "Sequence Job" that can be configured with the frequency that the it should be run at (hourly, daily, etc). Each sequence job is run asynchronously in either a batch or queueable context. 
 
-Once the actual scheduled job is run by Salesforce, queuable apex is used to execute each of the sequence job's serially. Each sequence job is enqueued based on which type of job its defined as being (either batch or queueable). Once the job completes, a queueable job is enqueued that will run the next sequence job. 
+Once the actual scheduled job is run by Salesforce, queueable apex is used to execute each of the sequence job's serially. Each sequence job is enqueued based on which type of job its defined as being (either batch or queueable). Once the job completes, a queueable job is enqueued that will run the next sequence job. 
 
 Each of the sequence jobs can be setup to either run a function or a DML statement. 
 
