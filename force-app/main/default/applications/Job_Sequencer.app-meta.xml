@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>This is the app for the job sequencer</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Job Sequencer</label>
+    <tabs>Job_Sequencer_Help</tabs>
+    <tabs>Job_Sequence_Error__c</tabs>
+    <tabs>Manage_Sequence_Jobs</tabs>
+    <tabs>Manage_Sequence_Job_Settings</tabs>
+</CustomApplication>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This is the help page for the job sequencer</description>
+    <label>Job Sequencer Help</label>
+    <motif>Custom33: Desk</motif>
+    <page>JobSequenceHelp</page>
+</CustomTab>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Query_Required</fullName>
+    <active>true</active>
+    <description>Will notify the user that a batch job requires</description>
+    <errorConditionFormula>AND(IsBatchJob__c,
+ OR(ISBLANK(From__c),
+    ISBLANK(Select__c),
+    ISBLANK(Where__c),
+    ISBLANK(OrderBy__c))
+)</errorConditionFormula>
+    <errorDisplayField>IsBatchJob__c</errorDisplayField>
+    <errorMessage>A query must defined for a batchable job</errorMessage>
+</ValidationRule>

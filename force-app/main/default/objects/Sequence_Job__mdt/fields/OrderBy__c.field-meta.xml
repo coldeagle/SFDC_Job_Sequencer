@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrderBy__c</fullName>
+    <defaultValue>&#39;CreatedDate DESC&#39;</defaultValue>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>What field(s) should the query be ordered by? DO NOT include the ORDER BY keyword; however, you will need to include DESC or ASC as applicable</inlineHelpText>
+    <label>Query - OrderBy</label>
+    <length>100</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,629 @@
+<!--
+Copyright 2019 Jason Hardy
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" lightningStylesheets="true" tabStyle="Job_Sequence_Error__c" id="JobSequenceHelp" title="Job Sequence Help" controller="JobSequenceVisualforceCont">
+
+    <apex:slds />
+
+    <div style="width: 85%" class="slds-grid slds-wrap">
+
+        <div class="slds-size_1-of-12"></div>
+
+        <article class="slds-card slds-size_10-of-12">
+            <div class="slds-page-header">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle slds-table_col-bordered">
+                    Job Sequencer Help
+                </h1>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <p class="slds-m-bottom--medium slds-m-top--medium">
+                    This will guide you through how to use the job sequencer
+                </p>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="toc">
+                                Table of Contents
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <ul class="slds-list--dotted slds-m-bottom--medium">
+                            <li>
+                                <a href="#manage_job_sequencer_settings">Managing Job Sequencer Settings</a>
+                            </li>
+                            <li>
+                                <a href="#new_sequence_job">Creating a New Sequence Job</a>
+                            </li>
+                            <li>
+                                <a href="#modify_js">Modifying existing Sequence Job's</a>
+                            </li>
+                            <li>
+                                <a href="#sequence_job_fields">Sequence Job Fields</a>
+                            </li>
+                            <li>
+                                <a href="#reviewing_errors">Reviewing Errors</a>
+                            </li>
+                            <li>
+                                <a href="#handling_test_classes">Handling Test Classes</a>
+                            </li>
+                            <li>
+                                <a href="#common_functions">Common Functions in the Default Handler</a>
+                            </li>
+                            <li>
+                                <a href="#scheduling_jobs">Scheduling Jobs</a>
+                            </li>
+                            <li>
+                                <a href="#pro_tips">Pro Tips</a>
+                            </li>
+                            <li>
+                                <a href="#legal">Legal Disclosure</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="manage_job_sequencer_settings">
+                                Managing Job Sequencer Settings
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        The system has a custom setting, "Sequence Jobs Settings" which can be found in the custom
+                        settings area of Setup. This custom setting allows you to adjust a few of the settings that are
+                        used throughout the job sequencer.
+                        <ol class="slds-list--ordered">
+                            <li>
+                                <strong>Max Retries</strong>: This setting controls how many attempts are made to retry
+                                a job until it moves on to the next. Retry's are normally needed when there are too many
+                                Batch jobs in process at one time for the process to create a new one.
+                            </li>
+                            <li>
+                                <strong>Minutes Until Retry</strong>: This setting controls how many minutes in the
+                                future that a temporary job will be scheduled to retry the job that was not successful.
+                            </li>
+                            <li>
+                                <strong>Enabled</strong>: Un-checking this box will disable the job sequencer from
+                                running. If a job is initiated it will no longer run and a new job will not be scheduled
+                                as long as the field is not checked.
+                            </li>
+                        </ol>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="new_sequence_job">
+                                Creating a New Sequence Job
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        To create a new job sequence, you'll need to create a new "Sequence Job" custom meta data record.
+                        <ol class="slds-list--ordered">
+                            <li>
+                                Go to <strong>Setup</strong>
+                            </li>
+                            <li>
+                                Use quick find and input <kbd><strong>Custom Metadata Types</strong></kbd>
+                            </li>
+                            <li>
+                                Click on the link for <strong>Custom Metadata Types</strong>
+                            </li>
+                            <li>
+                                When the new page loads, click on <strong>Manage Records</strong> link next to
+                                <em>Sequence Job</em>
+                            </li>
+                            <li>
+                                Click on <strong>New</strong> button
+                            </li>
+                        </ol>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="modify_js">
+                                Modifying existing Sequence Job's
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        To change a job sequence, you'll need to edit the "Sequence Job" custom meta data record.
+                        <ol class="slds-list--ordered">
+                            <li>
+                                Go to <strong>Setup</strong> area.
+                            </li>
+                            <li>
+                                Use quick find and input <kbd><strong>Custom Metadata Types</strong></kbd>
+                            </li>
+                            <li>
+                                Click on the link for <strong>Custom Metadata Types</strong>
+                            </li>
+                            <li>
+                                When the new page loads, click on <strong>Manage Records</strong> link next to
+                                <em>Sequence Job</em>
+                            </li>
+                            <li>
+                                Click on <strong>Edit</strong> link next to the job sequence you would like to adjust.
+                            </li>
+                        </ol>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="sequence_job_fields">
+                                Sequence Job Fields
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+
+                        <ol class="slds-list--ordered">
+                            <li>
+                                <strong>Information</strong>
+                                <ul class="slds-list--dotted">
+                                    <li>
+                                        <strong>Sequence Job Name</strong>: The API Name of the job, it must be unique
+                                        and may not have spaces or special characters besides underscores
+                                    </li>
+                                    <li>
+                                        <strong>Label</strong>: The Name of the job, it can contain any characters
+                                    </li>
+                                    <li>
+                                        <strong>Active</strong>: When this box is checked, the job sequence will run.
+                                        If unchecked, it will be skipped
+                                    </li>
+                                    <li>
+                                        <strong>Order</strong>: This is the order that the job will be run in. The
+                                        recommendation is to use the frequency and the numeric order. For example, daily
+                                        job number one would be D01
+                                    </li>
+                                    <li>
+                                        <strong>Batch Job</strong>: When this box is checked, the job will be run in
+                                        Batch Apex. If unchecked it will be run in Queueable Apex. The former is used
+                                        where a query needs to be run and the results of the query processed. The latter
+                                        is used for instances where a particular job is run and records to insert are
+                                        returned (e.g. Campaign Member Auto Enrollment). If there is a custom function
+                                        that needs to be run, it must be defined in the <strong>executeFunction</strong>
+                                        method in the relative class.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Job Details</strong>
+                                <ul class="slds-list--dotted">
+                                    <li>
+                                        <strong>Job Frequency</strong>: How frequent will this job be run.
+                                    </li>
+                                    <li>
+                                        <strong>Job Type</strong>: What type of job is this? If DML is selected, the
+                                        queried records simply have a DML statement executed against them.
+                                    </li>
+                                    <li id="sequence_job_fields_handler_class_field">
+                                        <strong>Handler Class</strong>: This is the name of handler class that implements
+                                        the <kbd>JobSequenceInterface</kbd> class. The <kbd>JobSequenceDefaultHandler</kbd>
+                                        class is defined by default; however, if you <a href="#using_custom_handler">
+                                            define a custom handler</a> its name can be put into this field.
+                                    </li>
+                                    <li>
+                                        <strong>Job Notification Email</strong>: An email will go to the running user by
+                                        default, if a separate email address needs to be notified if the job fails as
+                                        well, input it here.
+                                    </li>
+                                    <li id="sequence_job_fields_dml_or_function_field">
+                                        <strong>Job Execution DML Type or Function Name</strong>:
+                                        The values you define here will depend on the job type you select.
+                                        <ul class="slds-list--dotted">
+                                            <li>
+                                                <strong>DML</strong>: Input <strong>DELETE</strong> or
+                                                <strong>UPDATE</strong> to process those DML statements against the
+                                                queried records.
+                                            </li>
+                                            <li>
+                                                <strong>Function</strong>: Input the name of the function that will be
+                                                run during the sequence's execution. This function must be defined in
+                                                the <kbd>executeFunction</kbd> method of the
+                                                <a href="#using_custom_handler">handler</a> defined in the
+                                                <a href="#sequence_job_fields_handler_class_field">Handler Class field</a>
+                                                the sequence job.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Job Options</strong>
+                                <ul class="slds-list--dotted">
+                                    <li>
+                                        <strong>Job Batch Limit</strong>: This should be defined between 1 and 200, and
+                                        it will control how many records are processed in each batch.
+                                    </li>
+                                    <li>
+                                        <strong>Upsert External Id Field</strong>: If an upsert operation is being done
+                                        (not currently supported), this would be the field that would be execute against
+                                        to determine if the records in question should be inserted or updated.
+                                    </li>
+                                    <li>
+                                        <strong>Permanent Delete</strong>: If this box is checked when the he DELETE DML
+                                        type is set, the records deleted will be removed from the recycle bin.
+                                    </li>
+                                    <li>
+                                        <strong>All or None</strong>: If this box is checked, it will not allow for
+                                        partial success. For example in a batch of 200 records, if one fails, the entire
+                                        batch would fail if this box is checked.
+                                    </li>
+                                    <li>
+                                        <strong>Job Parameters</strong>: This is where you can define additional options
+                                        to be used when the job is executing. Each parameter set should be separated by
+                                        a comma. Each parameter set will have two pieces, the parameter name and value,
+                                        separated by a colon. Please see the "Handling Test Classes" and "Common
+                                        Functions" area for more information.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Query</strong>
+                                Queries only need to be run for Batch Jobs. All of these fields are required (except the
+                                record limit) when the <strong>Batch Job</strong> box is checked.
+                                <ul class="slds-list--dotted">
+                                    <li>
+                                        <strong>Query - Select</strong>: The fields that will be retrieved during the
+                                        query. Use comma's to separate each of the fields.
+                                    </li>
+                                    <li>
+                                        <strong>Query - From</strong>: The API Name of the object where the records will
+                                        be retrieved from.
+                                    </li>
+                                    <li>
+                                        <strong>Query - Where</strong>: The criteria that will be used to select the
+                                        appropriate records.</li>
+                                    <li>
+                                        <strong>Query - OrderBy</strong>: The sorted order that the records will be
+                                        returned in. This is important when processing batch jobs. If there are updates
+                                        to similar records (e.g. account) and the results are not sorted to where like
+                                        records are processed, then row lock errors may occur since Salesforce maybe
+                                        attempting to update the same related record in two separate batch contexts.
+                                        For example, if you have two batches running and contacts sharing the same
+                                        account are in each batch and both try to update their respective accounts,
+                                        then those updates to the contact records will fail due to the account record
+                                        being locked for update.</li>
+                                    <li>
+                                        <strong>Query - Record Limit</strong>: Will limit how many records are returned
+                                        with the query. This is useful when there are a large amount of records that
+                                        need to be processed.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>System Information:</strong> Ignore this area
+                            </li>
+                        </ol>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="reviewing_errors">
+                                Reviewing Errors
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            Errors that crop up during processing should be logged in the "Job Sequence Error" tab.
+                            You can view the most recent by sorting the name. This will give you helpful data on what
+                            job failed and (hopefully) why.
+                        </p>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="handling_test_classes">
+                                Handling Test Classes
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            If you need to modify your query to be more compatible with a test class (e.g. you normally
+                            ignore anything modified on the same day), you can define that as a parameter.
+                        </p>
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            You can combine this parameter with others (e.g. fields and values defend for the fieldShift
+                            function). To do this, simply setup your parameters as follows:
+                        </p>
+
+                        <pre class="prettyprint"><code>Test.isRunningTest:"where statement changes when running a test",<br/>!Test.isRunningTest:"where statement changes when not running a test"</code></pre>
+
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            In the example listed above, it was specifically stated that you may want to exclude records
+                            updated the same day when not running a test. You could define a single parameter:
+                        </p>
+                        <pre class="prettyprint"><code>!Test.isRunningTest:"AND LastModifiedDate != TODAY"</code></pre>
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            If this is defined, when the sequence is running outside of a test context it would add
+                            <samp><strong>AND LastModifiedDate !=
+                                    TODAY</strong></samp> to your WHERE statement.
+                        </p>
+                        <p class="slds-m-bottom--small slds-m-top--small">If you it were running in a test context, then
+                            it would not append that string to the where statement. Thus providing your unit test with
+                            potential data since the test data your test class uses was created "today" and therefore
+                            modified today.
+                        </p>
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            An important thing to note, if you have conditions like this setup you
+                            <strong><em>MUST</em></strong> specify <strong>{0}</strong> in the where condition! If you
+                            do not, the testing parameters will be ignored.
+                        </p>
+                        <p class="slds-m-bottom--small slds-m-top--small">
+                            <pre class="prettyprint"><code>StatusField = 'xyz' {0}</code></pre>
+                            In the example highlighted above the Testing code would be populated in place of the
+                            <strong>{0}</strong>. This means if we were to take our last example of !Test.isRunningTest,
+                            then the query that is formatted when the job sequence is run <em><strong>outside</strong> of a
+                                <strong>test</strong> context</em> would look like this:
+                            <pre class="prettyprint"><code>StatusField = 'xyz' AND LastModifiedDate != TODAY</code></pre>
+                            If it was run <em><strong>inside</strong> of a <strong>test</strong> context</em> it would
+                                look like this:
+                            <pre class="prettyprint"><code>StatusField = 'xyz'</code></pre>
+                        </p>
+                        <article class="slds-card slds-card_boundary">
+                            <div class="slds-card__header slds-grid slds-theme_error">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <h2 class="slds-card__header-title slds-m-bottom_small">Handling Date Time in Queries</h2>
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <p class="slds-m-bottom--small">
+                                    There are a couple of variations that will go into handling date time variables.
+                                    You will use date time variables primarily in Hourly jobs where you'll need to
+                                    specify a date filter based on x minutes in the past. To accommodate this you'll
+                                    need to setup your parameter and where definitions slightly differently.
+                                </p>
+                                <p class="slds-m-bottom--small slds-m-top--small">
+                                    For the parameter, you will need to include a variable name called "DateTimeVar" and
+                                    put an equals sign and how many minutes difference you want from the date time listed
+                                    in the WHERE condition. For example, the following will setup 0 minutes difference
+                                    if a test is running and -60 minutes when a test is not running:
+                                </p>
+                                <pre class="prettyprint"><code>Test.isRunningTest:"DateTimeVar=0",<br/>!Test.isRunningTest:"DateTimeVar=-60"</code></pre>
+                                <p class="slds-m-bottom--small slds-m-top--small">
+                                    <strong>Important</strong>: The parameter after the = sign
+                                    <strong><em>MUST</em></strong> be in <em>MINUTES</em> (no commas).
+                                    If you want to go back one day, you would input <kbd>-1440</kbd>
+                                    (the number of minutes in a day, <samp>24 hours * 60 minutes/hour</samp>).
+                                </p>
+                                <p class="slds-m-bottom--small slds-m-top--small">
+                                    When you're defining the WHERE clause, you will need to format it a bit differently.
+                                    You are not going to include the normal {0} that you would for other testing scenario
+                                    logic swaps. Instead, you will include <samp>:DateTimeVar</samp> where the date/time
+                                    comparison will take place.
+                                </p>
+                                <pre class="prettyprint"><code>CreatedDate &lt;= :DateTimeVar</code></pre>
+                                <p class="slds-m-bottom--small slds-m-top--small">
+                                    When the job processes the ":DateTimeVar" will be replaced by the properly formatted
+                                    date time adjusted based on the testing parameters.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="common_functions">
+                                Common Functions in the Default Handler
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-m-bottom--small">
+                            This Section will describe how to use common job sequence functions in the default handler
+                        </p>
+                        <table class="slds-table slds-table_bordered slds-table_resizable-cols slds-table_fixed-layout slds-table_col-bordered" role="grid">
+                            <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col">
+                                    Function Name
+                                </th>
+                                <th class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col">
+                                    Function Description
+                                </th>
+                                <th class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col">
+                                    Function Parameters
+                                </th>
+                            </tr>
+                            </thead>
+                            <tr class="slds-align-top">
+                                <td class="slds-cell-wrap" role="gridcell"><strong><samp>fieldShift</samp></strong></td>
+                                <td class="slds-cell-wrap" role="gridcell">
+                                    <p class="slds-m-bottom--small">
+                                        This function will use the parameters defined to "shift" the value the fields
+                                        defined as parameter's.
+                                    </p>
+                                    <p class="slds-m-bottom--small slds-m-top--small">
+                                        For example, if you wanted to close opportunities you could define the StageName
+                                        field and the "Closed Lost" status.
+                                    </p>
+                                    <pre class="prettyprint"><code>StageName:"Closed Lost"</code></pre>
+                                </td>
+                                <td class="slds-cell-wrap" role="gridcell">
+                                    <p class="slds-m-bottom--small">
+                                        The parameters should be formatted as follows:
+                                    </p>
+                                    <pre class="prettyprint">FieldApiName__c:"New Value",<br/>FieldApiName2__c:"New Value2"</pre>
+                                    <p class="slds-m-bottom--small slds-m-top--small">
+                                        You may have multiple options (as seen above) are separated by comma's <em>,</em>
+                                    </p>
+                                    <p class="slds-m-bottom--small slds-m-top--small">
+                                        The value pair are separated by a colon <em>:</em>
+                                    </p>
+                                </td>
+                            </tr>
+                            <!--
+                            <tr class="slds-align-top">
+                                <td class="slds-cell-wrap"></td>
+                                <td class="slds-cell-wrap"></td>
+                                <td class="slds-cell-wrap"></td>
+                            </tr>
+                            -->
+                        </table>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="using_custom_handler">
+                                Using a Custom Handler
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-m-bottom--small">
+                            If you do not wish to use the standard handler for functions and DML operations, the system
+                            provides an interface that you are able to implement. By implementing this interface, you
+                            will be able to write and reference your own custom functions and DML operations. When you
+                            define a <a href="#new_sequence_job">sequence job</a>, you can input the class name of your
+                            handler that extends the job sequence interface into the
+                            <a href="#sequence_job_fields_handler_class_field">Handler Class field</a>.
+                            Doing this will tell the job sequencing where to look for the function or DML code that will
+                            be executed with that job. The methods you will be implementing are outlined below.
+                        </p>
+                        <ul class="slds-list_dotted">
+                            <li>
+                                <strong><kbd>executeFunction</kbd></strong>: This method is where the job sequencer looks
+                                to execute functions that are defined in a <a href="#new_sequence_job">sequence job</a>
+                                based on what is defined in the
+                                <a href="#sequence_job_fields_dml_or_function_field">Job Execution DML Type or Function
+                                    Name</a> field.
+                            </li>
+                            <li>
+                                <strong><kbd>executeDML</kbd></strong>: This method is where you can defined custom DML
+                                execution code. If you do not wish to implement custom DML logic, then you may use the
+                                default DML handling code defined in the utilities class:
+                                <pre class="prettyprint"><code>JobSequenceUtilities.attemptJobSequenceDML(scope,js.executionJob,js.upsertField,js.allOrNone,js.permDelete);</code></pre>
+                            </li>
+                            <li>
+                                <strong><kbd>finishJobSequence</kbd></strong>: This method will be initiated once the
+                                current execution cycle has finished. If it's a batch job, then this function will be
+                                executed at the end of <strong>every</strong> batch. This method is useful if you wish
+                                to do a notification or custom error handling.
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="scheduling_jobs">
+                                Scheduling Jobs
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-m-bottom--small">
+                            To setup a repeating schedule of when jobs will run, you can use one of the links below to
+                            activate the job or run the code below each example in the anonymously.
+                        </p>
+                        <apex:form >
+                            <ul class="slds-list_dotted">
+                                <li>
+                                    <apex:commandLink action="{!scheduleHourlyRun}">Schedule Hourly Run</apex:commandLink>:<br/>
+                                    <pre class="prettyprint"><code>System.schedule('JobSequenceHourly', Label.Job_Sequence_Hourly_Cron, new JobSequenceHourly());</code></pre>
+                                </li>
+                                <li>
+                                    <apex:commandLink action="{!scheduleDailyRun}">Schedule Daily Run</apex:commandLink>:<br/>
+                                    <pre class="prettyprint"><code>System.schedule('JobSequenceDaily', Label.Job_Sequence_Daily_Cron, new JobSequenceDaily());</code></pre>
+                                </li>
+                                <li>
+                                    <apex:commandLink action="{!scheduleWeeklyRun}">Schedule Weekly Run</apex:commandLink>:<br/>
+                                    <pre class="prettyprint"><code>System.schedule('JobSequenceWeekly', Label.Job_Sequence_Weekly_Cron, new JobSequenceWeekly());</code></pre>
+                                </li>
+                                <li>
+                                    <apex:commandLink action="{!scheduleMonthlyRun}">Schedule Monthly Run</apex:commandLink>:<br/>
+                                    <pre class="prettyprint"><code>System.schedule('JobSequenceMonthly', Label.Job_Sequence_Monthly_Cron, new JobSequenceMonthly());</code></pre>
+                                </li>
+                                <li>
+                                    <apex:commandLink action="{!scheduleQuarterlyRun}">Schedule Quarterly Run</apex:commandLink>:<br/>
+                                    <pre class="prettyprint"><code>System.schedule('JobSequenceQuarterly', Label.Job_Sequence_Quarterly_Cron, new JobSequenceQuarterly());</code></pre>
+                                </li>
+                                <li>
+                                    <apex:commandLink action="{!scheduleYearlyRun}">Schedule Yearly Run</apex:commandLink>:<br/>
+                                    <pre class="prettyprint"><code>System.schedule('JobSequenceYearly', Label.Job_Sequence_Yearly_Cron, new JobSequenceYearly());</code></pre>
+                                </li>
+                            </ul>
+                            To activate all of the jobs listed above,&nbsp;<apex:commandLink action="{!scheduleAllRuns}">click here</apex:commandLink> or run the following anonymously:<br/>
+                            <pre class="prettyprint"><code>JobSequenceUtilities.scheduleAllRuns();</code></pre>
+                        </apex:form>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="pro_tips">
+                                Pro Tips
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+
+                        <ul class="slds-list_dotted">
+                            <li>When defining the "Value" portion of a parameter, the " is optional. For example the
+                                following are treated exactly the same:
+                                <pre class="prettyprint"><code>FieldApiName__c:"New Value"</code></pre>
+                                <pre class="prettyprint"><code>FieldApiName__c:New Value</code></pre>
+                                The value text includes the " in this documentation for clarity, not out of necessity.
+                            </li>
+                            <li>When defining testing parameters on something other than a date time field (e.g.
+                                Testing.isRunningTest:Something different), be sure to include <strong>{0}</strong> in
+                                the "Query - Where" field</li>
+                            <li>If you need something to run outside of a batch context be sure to uncheck the
+                                <strong>Batch Job</strong> box on the job sequence record!
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-theme_inverse">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate ">
+                            <h2 class="slds-card__header-title slds-m-bottom_small" id="legal">
+                                Legal Disclosure
+                            </h2>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p class="slds-m-bottom--small">
+                            Copyright 2019 Jason Hardy
+                            <br/><br/>
+                            Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+                            <br/>
+                            <ol class="slds-list_ordered">
+                                <li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+                                <li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+                                <li>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+                            </ol>
+                            <br/>
+                            THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </article>
+
+        <div class="slds-size_1-of-12"></div>
+    </div>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</apex:page>

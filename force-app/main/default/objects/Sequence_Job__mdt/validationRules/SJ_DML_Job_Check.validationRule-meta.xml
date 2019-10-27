@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_DML_Job_Check</fullName>
+    <active>true</active>
+    <description>Will make sure that dml job type has an appropriate execution type</description>
+    <errorConditionFormula>AND(ISPICKVAL(Type__c,&#39;DML&#39;),
+    CASE(UPPER(ExecutionJob__c),
+         &#39;UPDATE&#39;,0,
+         &#39;DELETE&#39;,0,
+         1
+    )&gt;0
+)</errorConditionFormula>
+    <errorDisplayField>ExecutionJob__c</errorDisplayField>
+    <errorMessage>You have selected an invalid job execution for a DML job type! The correct values are Update and Delete!</errorMessage>
+</ValidationRule>

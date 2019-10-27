@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Keyword_Check_FROM</fullName>
+    <active>true</active>
+    <description>Validates that the from keyword is not present</description>
+    <errorConditionFormula>BEGINS(UPPER(SUBSTITUTE(From__c, &#39; &#39;, &#39;&#39;)),&#39;FROM&#39;)</errorConditionFormula>
+    <errorDisplayField>From__c</errorDisplayField>
+    <errorMessage>Do not include the from keyword</errorMessage>
+</ValidationRule>

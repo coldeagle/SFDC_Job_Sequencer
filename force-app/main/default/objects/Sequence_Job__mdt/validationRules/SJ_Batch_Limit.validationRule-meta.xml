@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Batch_Limit</fullName>
+    <active>true</active>
+    <description>Checks the batch limit  size</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(BatchLimit__c)),BatchLimit__c&gt;200)</errorConditionFormula>
+    <errorDisplayField>BatchLimit__c</errorDisplayField>
+    <errorMessage>The batch limit may not be set to more than 200</errorMessage>
+</ValidationRule>

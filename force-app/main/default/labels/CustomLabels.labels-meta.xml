@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Job_Sequence_Daily_Cron</fullName>
+        <categories>Job Sequence Cron</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - Daily Cron</shortDescription>
+        <value>0 0 23 * * ? *</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Error_Email_Body</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Error Email Body</shortDescription>
+        <value>There was an error processing job {0} which resulted in an error. 
+
+Please check the Job Sequence Errors object using the job id to get more details about the failures.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Error_Email_Subject</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Error Email Subject</shortDescription>
+        <value>Error during job sequence &quot;{0}&quot; - {1}</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Exception_Template</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Exception Template</shortDescription>
+        <value>Cause: {0}
+Line Number: {1}
+Message: {2}
+Stack Trace: {3}</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Hourly_Cron</fullName>
+        <categories>Job Sequence Cron</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - Hourly Cron</shortDescription>
+        <value>0 0 * * * ?</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_JobSequenceQueueable_Initialization_Error</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - JobSequenceQueueable Initialization Error</shortDescription>
+        <value>Job Sequence Error: The JobSequenceQueueable class was not passed a valid frequency interval nor a valid job sequence. One of these two items are required to function.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Max_Retry_Error</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Max Retry Error</shortDescription>
+        <value>Job Sequence Error: The maximum of {0} retries has been met for the sequence job &quot;{1}&quot;, function &quot;{2}&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Monthly_Cron</fullName>
+        <categories>Job Sequence Cron</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - Monthly Cron</shortDescription>
+        <value>0 0 0 1 1/1 ? *</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_No_Function_Found_Error</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - No Function Found Error</shortDescription>
+        <value>Job Sequence Error - No function ({0}) was found in the &quot;executeFunction&quot; method in the &quot;JobSequenceBatch&quot; class. Please add an appropriate function to the JobSequenceBatch class and add a call to it in the executeFunction method.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_No_Handler_Found_Error</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - No Handler Found Error</shortDescription>
+        <value>The handler defined was either not found or is not of the JobSequenceInterface!</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_No_Job_Sequence_Object_Found_Error</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - No Job Sequence Object Found Error</shortDescription>
+        <value>No Job Sequence Object was passed!</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Parameters_Not_Found</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Parameters Not Found</shortDescription>
+        <value>Job Sequence Error: The parameters for the ({0}) function were not found! Please check the Sequence Job custom metadata record {1} and make sure that all parameters are defined correctly.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Quarterly_Cron</fullName>
+        <categories>Job Sequence Cron</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - Quarterly Cron</shortDescription>
+        <value>0 0 0 1 1/3 ? *</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Schedulable_Queueable_Result_Invalid</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Schedulable Queueable Result Invalid</shortDescription>
+        <value>Job Sequence Error: Invalid Job Sequence Queue Job created!</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Test_Is_Not_Running_Param</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Test Is Not Running Param</shortDescription>
+        <value>!Test.isRunningTest</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Test_Is_Running_Param</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Test Is Running Param</shortDescription>
+        <value>Test.isRunningTest</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Valid_Job_Sequence_Record_Required</fullName>
+        <categories>Job Sequence</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Sequence - Valid Job Sequence Record Required</shortDescription>
+        <value>Job Sequence Error: {0} requires a valid JobSequence record to be passed!</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Weekly_Cron</fullName>
+        <categories>Job Sequence Cron</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - Weekly Cron</shortDescription>
+        <value>0 0 23 ? * SUN</value>
+    </labels>
+    <labels>
+        <fullName>Job_Sequence_Yearly_Cron</fullName>
+        <categories>Job Sequence Cron</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Sequence - Yearly Cron</shortDescription>
+        <value>0 0 0 1 1 ? *</value>
+    </labels>
+</CustomLabels>

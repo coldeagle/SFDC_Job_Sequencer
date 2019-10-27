@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UpsertExtIdField__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>If this is an upsert operation, this should be the API name of the external Id that will be used to upsert against (if any). Salesforce automatically treats the Id field as the default and should not be defined here if that&#39;s the one to be used.</inlineHelpText>
+    <label>Upsert External Id Field</label>
+    <length>80</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

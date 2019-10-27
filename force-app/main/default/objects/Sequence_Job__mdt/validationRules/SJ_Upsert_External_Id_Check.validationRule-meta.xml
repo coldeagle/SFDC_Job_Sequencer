@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Upsert_External_Id_Check</fullName>
+    <active>true</active>
+    <description>Will validate that the Id field is not used as an external Id</description>
+    <errorConditionFormula>AND(NOT(ISBLANK(UpsertExtIdField__c)),LOWER(UpsertExtIdField__c) = &#39;id&#39;)</errorConditionFormula>
+    <errorDisplayField>UpsertExtIdField__c</errorDisplayField>
+    <errorMessage>You can not define &quot;Id&quot; as the upsert field, Salesforce will do this for you automatically.</errorMessage>
+</ValidationRule>

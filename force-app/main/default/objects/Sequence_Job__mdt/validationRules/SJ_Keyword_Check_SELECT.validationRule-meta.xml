@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Keyword_Check_SELECT</fullName>
+    <active>true</active>
+    <description>Validates that the select keyword is not present</description>
+    <errorConditionFormula>BEGINS(UPPER(SUBSTITUTE(Select__c, &#39; &#39;, &#39;&#39;)),&#39;SELECT&#39;)</errorConditionFormula>
+    <errorDisplayField>Select__c</errorDisplayField>
+    <errorMessage>Do not include the select keyword</errorMessage>
+</ValidationRule>

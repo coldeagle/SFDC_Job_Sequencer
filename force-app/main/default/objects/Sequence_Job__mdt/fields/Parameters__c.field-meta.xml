@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parameters__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>If there are parameters that need to be set to run the function, enter them here. The parameters should be &quot;Parameter Name:Value&quot;. If there are multiple use a comma to separate. e.g. paramName1:value1,paramName2:value2</inlineHelpText>
+    <label>Job Parameters</label>
+    <required>false</required>
+    <type>TextArea</type>
+</CustomField>

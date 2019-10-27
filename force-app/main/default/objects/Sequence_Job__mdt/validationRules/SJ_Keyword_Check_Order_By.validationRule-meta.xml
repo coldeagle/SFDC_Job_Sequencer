@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Keyword_Check_Order_By</fullName>
+    <active>true</active>
+    <description>Validates that the order by keyword is not present</description>
+    <errorConditionFormula>BEGINS(UPPER(SUBSTITUTE(OrderBy__c, &#39; &#39;, &#39;&#39;)),&#39;ORDER BY&#39;)</errorConditionFormula>
+    <errorDisplayField>OrderBy__c</errorDisplayField>
+    <errorMessage>Validates that the Order By keyword is not present</errorMessage>
+</ValidationRule>

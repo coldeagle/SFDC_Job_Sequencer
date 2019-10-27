@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SJ_Keyword_Check_WHERE</fullName>
+    <active>true</active>
+    <description>Validates that the where keyword is not present</description>
+    <errorConditionFormula>BEGINS(UPPER(SUBSTITUTE(Where__c, &#39; &#39;, &#39;&#39;)),&#39;WHERE&#39;)</errorConditionFormula>
+    <errorDisplayField>Where__c</errorDisplayField>
+    <errorMessage>Do not include the where keyword</errorMessage>
+</ValidationRule>
