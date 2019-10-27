@@ -41,3 +41,6 @@ Closed_Lost_Reason__c:"Auto closed"
 Then when the sequence job is run, all of the opportunities queried would have the **StageName** set to _"Closed Lost"_ and the custom field **Closed_Lost_Reason__c** set to _"Auto Closed"_.
 
 Developers also have the option of creating additional functions that can be used. More details can be found in the "Job Sequencer Help" tab as well as the code comments of the of the "JobSequenceDefaultHandler" class. 
+
+# Link to Unmanaged Package Installer
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4P000002icUM
