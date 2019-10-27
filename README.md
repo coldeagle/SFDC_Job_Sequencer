@@ -25,7 +25,7 @@ When the sequence job runs, it would simply run an update to those records. Then
 
 ## Functions
 
-There is one function that can be executed out of the box, field shift. This allows you to query records and define which fields should be shifted to what value. 
+There is one function that can be executed out of the box, FieldShift. This allows you to query records and define which fields should be shifted to what value. 
 
 For example, let's say that you want close all opportunities that have not been modified in the last 30 days. You would run a query like this
 
